@@ -96,7 +96,14 @@ namespace CodePulse.API.Controllers
                     PublishedDate = blogpost.PublishedDate,
                     ShortDescription = blogpost.ShortDescription,
                     UrlHandle = blogpost.UrlHandle,
-                    Title = blogpost.Title
+                    Title = blogpost.Title,
+                    Categories = blogpost.Categories.Select(x => new CategoryDTO
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        UrlHandle = x.UrlHandle
+                    }).ToList()
+
                 });
             }
             return Ok(response);
